@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - checkout: git://ajschmidt8/azure-pipelines@cc629c1
+  - checkout: git://github.com:ajschmidt8/azure-pipelines@cc629c1
     clean: true
     env:
       COMMIT_ID: $(Build.SourceVersion)
