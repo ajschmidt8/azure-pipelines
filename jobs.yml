@@ -7,12 +7,14 @@ parameters:
 
 jobs:
   - job: cpp_build
+    timeoutInMinutes: 2
     steps:
       - script: ./script.sh cpp
         displayName: "C++ build"
   - ${{ each ver in parameters.py_vers }}:
       - job: py_${{ replace(ver, '.', '') }}_build
+        timeoutInMinutes: 2
         dependsOn: cpp_build
         steps:
           - script: ./script.sh py${{ver}}
-            displayName: "Python build"
+            displayName: "Python ${{ver}} build"
