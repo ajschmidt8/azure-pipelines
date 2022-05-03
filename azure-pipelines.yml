@@ -4,7 +4,7 @@ resources:
       type: github
       endpoint: ajschmidt8
       name: ajschmidt8/azure-pipelines
-      ref: ajschmidt8-patch-1
+      ref: $(Build.SourceBranchName)
 
 trigger:
   - main
