@@ -6,3 +6,7 @@ pool:
 
 jobs:
   - template: jobs.yml
+  - job: style_checks
+    steps:
+      - script: echo "style checks"
+        displayName: "style checks"

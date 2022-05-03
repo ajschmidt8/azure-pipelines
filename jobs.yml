@@ -6,10 +6,6 @@ parameters:
       - "3.9"
 
 jobs:
-  - job: style_checks
-    steps:
-      - script: echo "style checks"
-        displayName: "C++ build"
   - job: cpp_build
     steps:
       - script: ./script.sh cpp
