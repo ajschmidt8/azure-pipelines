@@ -4,7 +4,7 @@ resources:
       type: github
       endpoint: ajschmidt8
       name: ajschmidt8/azure-pipelines
-      ref: cc629c1
+      ref: ajschmidt8-patch-1
 
 trigger:
   - main
