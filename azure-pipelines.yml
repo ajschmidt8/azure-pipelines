@@ -1,7 +1,10 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+resources:
+  repositories:
+    - repository: azure-pipelines # The name used to reference this repository in the checkout step
+      type: github
+      endpoint: ajschmidt8
+      name: ajschmidt8/azure-pipelines
+      ref: cc629c1
 
 trigger:
   - main
@@ -10,10 +13,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - checkout: git://github.com:ajschmidt8/azure-pipelines@cc629c1
+  - checkout: azure-pipelines
     clean: true
-    env:
-      COMMIT_ID: $(Build.SourceVersion)
+    # env:
+    #   COMMIT_ID: $(Build.SourceVersion)
   - script: echo Hello, world!
     displayName: "Run a one-line script"
 
