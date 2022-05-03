@@ -12,8 +12,20 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-  - checkout: azure-pipelines
-    clean: true
-  - script: ./script.sh
-    displayName: "C++ build"
+jobs:
+  - job: style_checks
+    steps:
+      - checkout: azure-pipelines
+      - script: echo "style checks"
+        displayName: "C++ build"
+  - job: cpp_build
+    steps:
+      - checkout: azure-pipelines
+      - script: ./script.sh cpp
+        displayName: "C++ build"
+  - job: py_build
+    dependsOn: cpp_build
+    steps:
+      - checkout: azure-pipelines
+      - script: ./script.sh py
+        displayName: "Python build"
