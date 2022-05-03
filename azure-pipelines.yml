@@ -4,7 +4,7 @@ resources:
       type: github
       endpoint: ajschmidt8
       name: ajschmidt8/azure-pipelines
-      ref: $(Build.SourceBranchName)
+      ref: $[replace(variables['Build.SourceBranch'], '/merge', '/head')]
 
 trigger:
   - main
