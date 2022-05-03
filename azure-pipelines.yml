@@ -10,10 +10,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - checkout: git://ajschmidt8/azure-pipelines@${{ Build.SourceVersion }}
+  - checkout: git://ajschmidt8/azure-pipelines@$COMMIT_ID
     clean: true
-    # env:
-    #   COMMIT_ID: $(Build.SourceVersion)
+    env:
+      COMMIT_ID: $(Build.SourceVersion)
   - script: echo Hello, world!
     displayName: "Run a one-line script"
 
