@@ -4,5 +4,5 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-extends:
+jobs:
   - template: jobs.yml
