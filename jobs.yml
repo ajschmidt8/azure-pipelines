@@ -1,3 +1,10 @@
+parameters:
+  - name: py_vers
+    type: object
+    default:
+      - "3.8"
+      - "3.9"
+
 jobs:
   - job: style_checks
     steps:
@@ -7,8 +14,8 @@ jobs:
     steps:
       - script: ./script.sh cpp
         displayName: "C++ build"
-  - job: py_build
+  - ${{ each ver in parameters.py_vers }}:
     dependsOn: cpp_build
     steps:
-      - script: ./script.sh py
+      - script: ./script.sh py${{ver}}
         displayName: "Python build"
