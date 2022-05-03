@@ -8,5 +8,5 @@ jobs:
   - template: jobs.yml
   - job: style_checks
     steps:
-      - script: echo "style checks"
+      - script: echo "style checks"; sleep 10s
         displayName: "style checks"
