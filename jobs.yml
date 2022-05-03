@@ -4,17 +4,23 @@ parameters:
     default:
       - "3.8"
       - "3.9"
+  - name: arch
+    type: object
+    default:
+      - x86_64
+      - arm64
 
 jobs:
-  - job: cpp_build
-    timeoutInMinutes: 2
-    steps:
-      - script: ./script.sh cpp
-        displayName: "C++ build"
-  - ${{ each ver in parameters.py_vers }}:
-      - job: py_${{ replace(ver, '.', '') }}_build
+  - ${{ each arch in parameters.arch }}:
+      - job: cpp_build_${{ arch }}
         timeoutInMinutes: 2
-        dependsOn: cpp_build
         steps:
-          - script: ./script.sh py${{ver}}
-            displayName: "Python ${{ver}} build"
+          - script: ./script.sh cpp_${{ arch }}
+            displayName: "C++ build - ${{ arch }}"
+      - ${{ each ver in parameters.py_vers }}:
+          - job: py_${{ replace(ver, '.', '') }}_build_${{ arch }}
+            timeoutInMinutes: 2
+            dependsOn: cpp_build_${{ arch }}
+            steps:
+              - script: ./script.sh py${{ver}}_${{ arch }}
+                displayName: "Python ${{ver}} build - ${{ arch }}"
