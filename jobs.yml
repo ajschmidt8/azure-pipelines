@@ -15,7 +15,8 @@ jobs:
       - script: ./script.sh cpp
         displayName: "C++ build"
   - ${{ each ver in parameters.py_vers }}:
-    dependsOn: cpp_build
-    steps:
-      - script: ./script.sh py${{ver}}
-        displayName: "Python build"
+      - job: py_${{ ver }}_build
+        dependsOn: cpp_build
+        steps:
+          - script: ./script.sh py${{ver}}
+            displayName: "Python build"
