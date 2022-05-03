@@ -1,6 +1,6 @@
 resources:
   repositories:
-    - repository: azure-pipelines # The name used to reference this repository in the checkout step
+    - repository: azure-pipelines
       type: github
       endpoint: ajschmidt8
       name: ajschmidt8/azure-pipelines
@@ -15,12 +15,5 @@ pool:
 steps:
   - checkout: azure-pipelines
     clean: true
-    # env:
-    #   COMMIT_ID: $(Build.SourceVersion)
-  - script: echo Hello, world!
-    displayName: "Run a one-line script"
-
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      env
-    displayName: "Run a multi-line script"
+  - script: ./script.sh
+    displayName: "C++ build"
