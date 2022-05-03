@@ -1,11 +1,3 @@
-resources:
-  repositories:
-    - repository: azure-pipelines
-      type: github
-      endpoint: ajschmidt8
-      name: ajschmidt8/azure-pipelines
-      ref: refs/pull/1/head
-
 trigger:
   - main
 
@@ -13,19 +5,4 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - job: style_checks
-    steps:
-      - checkout: azure-pipelines
-      - script: echo "style checks"
-        displayName: "C++ build"
-  - job: cpp_build
-    steps:
-      - checkout: azure-pipelines
-      - script: ./script.sh cpp
-        displayName: "C++ build"
-  - job: py_build
-    dependsOn: cpp_build
-    steps:
-      - checkout: azure-pipelines
-      - script: ./script.sh py
-        displayName: "Python build"
+  - template: jobs.yml
